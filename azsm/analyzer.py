@@ -1,5 +1,5 @@
 """
-Main analyzer module that orchestrates the Azure Save Money | azsm functionality.
+Main analyzer module that orchestrates the Azure Save Money (azsm) functionality.
 """
 
 import sys

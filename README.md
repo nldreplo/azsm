@@ -33,12 +33,12 @@ pip install -e .
 
 Basic usage:
 ```bash
-python -m azure_cost_analyzer
+python -m azsm
 ```
 
 With options:
 ```bash
-python -m azure_cost_analyzer --subscription-id <subscription-id> --output resources.json --debug
+python -m azsm --subscription-id <subscription-id> --output resources.json --debug
 ```
 
 ### Options
@@ -95,7 +95,7 @@ Commitment-Based Options
 ### Project Structure
 
 ```
-azure_cost_analyzer/
+azsm/
 ├── __init__.py
 ├── __main__.py
 ├── analyzer.py        # Main orchestration

@@ -7,7 +7,7 @@ import json
 import urllib.parse
 from typing import Dict, Any, List
 from rich.console import Console
-from azure_cost_analyzer.utils import DiskMapper, PREMIUM_DISK_SIZES, STANDARD_SSD_SIZES, STANDARD_HDD_SIZES
+from azsm.utils import DiskMapper, PREMIUM_DISK_SIZES, STANDARD_SSD_SIZES, STANDARD_HDD_SIZES
 from .utils import format_currency  # Add this import at the top
 
 console = Console()

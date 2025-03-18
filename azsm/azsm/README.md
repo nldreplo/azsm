@@ -23,7 +23,7 @@ pip install azure-cost-analyzer
 Here is a simple example of how to use the Azure Save Money | azsm:
 
 ```python
-from azure_cost_analyzer import analyze_resources
+from azsm import analyze_resources
 
 # Analyze resources
 results = analyze_resources()

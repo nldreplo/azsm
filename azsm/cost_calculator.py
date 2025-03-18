@@ -6,7 +6,7 @@ from typing import Dict, Any
 from rich.console import Console
 
 # Import DiskMapper from utils directly with absolute import
-from azure_cost_analyzer.utils import DiskMapper
+from azsm.utils import DiskMapper
 
 console = Console()
 

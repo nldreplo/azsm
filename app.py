@@ -5,8 +5,8 @@ Azure Save Money | azsm - A CLI tool to analyze Azure resources and calculate po
 
 import argparse
 import sys
-from azure_cost_analyzer.analyzer import AzureCostAnalyzer
-from azure_cost_analyzer.pricing_client import PricingClient
+from azsm.analyzer import AzureCostAnalyzer
+from azsm.pricing_client import PricingClient
 
 def main():
     """Main entry point for the CLI application."""

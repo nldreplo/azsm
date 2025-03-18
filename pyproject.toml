@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "azsm"
+version = "0.1.0"
+authors = [
+    {name = "Bas Berkhout"}
+]
+description = "Azure Save Money - A tool for analyzing Azure costs and finding savings"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "azure-identity",
+    "azure-mgmt-compute",
+    "azure-mgmt-resource",
+    "rich"
+]
+
+[project.scripts]
+azsm = "azsm.__main__:main"

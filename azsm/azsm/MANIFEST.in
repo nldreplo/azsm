@@ -1,4 +1,4 @@
 include README.md
 include LICENSE
-recursive-include azure_cost_analyzer/core *
+recursive-include azsm/core *
 recursive-include tests *

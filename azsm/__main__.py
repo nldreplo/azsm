@@ -1,12 +1,12 @@
 """
-Main entry point for Azure Save Money | azsm.
+Main entry point for Azure Save Money (azsm).
 """
 
 import argparse
 import sys
 from rich.console import Console
 
-from azure_cost_analyzer.analyzer import AzureCostAnalyzer
+from azsm.analyzer import AzureCostAnalyzer
 
 console = Console()
 

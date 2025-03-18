@@ -3,13 +3,13 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta" 
 
 [project]
-name = "azure_cost_analyzer"
+name = "azsm"
 version = "0.1.0"
 description = "Azure Save Money | azsm package for analyzing Azure resources and calculating potential cost savings."
 authors = [{ name = "Bas Berkhout", email = "your_email@example.com" }]
 license = { text = "MIT" }
 readme = "README.md"
-homepage = "https://github.com/yourusername/azure_cost_analyzer"
+homepage = "https://github.com/yourusername/azsm"
 keywords = ["azure", "cost", "analyzer", "savings"]
 classifiers = [
     "Programming Language :: Python :: 3",

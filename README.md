@@ -38,22 +38,23 @@ python -m azsm
 
 With options:
 ```bash
-python -m azsm --subscription-id <subscription-id> --output resources.json --debug
+python -m azsm --subscription-id <subscription-id> --output resources.json --currency EUR --debug
 ```
 
 ### Options
 
 - `--subscription-id`, `-s`: Azure subscription ID (optional, uses default if not specified)
 - `--output`, `-o`: Output file for resource data (default: azure_resources.json)
+- `--currency`: Currency for pricing (default: USD)
 - `--debug`: Enable debug mode to print API queries and responses
 
 ## Authentication
 
-The tool uses DefaultAzureCredential for authentication, which tries these methods in order:
-1. Environment variables (AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID)
-2. Azure CLI credentials
-3. Managed Identity
-4. Visual Studio Code credentials
+The tool uses you context from the Azure CLI. Ensure you are logged in using:
+
+```bash
+az login
+```
 
 ## Example Output
 
@@ -90,6 +91,62 @@ Commitment-Based Options
 - CAD (Canadian Dollar)
 - And many more...
 
+## Disk Size Reference
+
+### Premium SSD Sizes (P-series)
+
+| Disk Type | Disk Size (GiB) |
+|-----------|----------------|
+| P1        | 4              |
+| P2        | 8              |
+| P3        | 16             |
+| P4        | 32             |
+| P6        | 64             |
+| P10       | 128            |
+| P15       | 256            |
+| P20       | 512            |
+| P30       | 1,024          |
+| P40       | 2,048          |
+| P50       | 4,096          |
+| P60       | 8,192          |
+| P70       | 16,384         |
+| P80       | 32,767         |
+
+### Standard SSD Sizes (E-series)
+
+| Disk Type | Disk Size (GiB) |
+|-----------|----------------|
+| E1        | 4              |
+| E2        | 8              |
+| E3        | 16             |
+| E4        | 32             |
+| E6        | 64             |
+| E10       | 128            |
+| E15       | 256            |
+| E20       | 512            |
+| E30       | 1,024          |
+| E40       | 2,048          |
+| E50       | 4,096          |
+| E60       | 8,192          |
+| E70       | 16,384         |
+| E80       | 32,767         |
+
+### Standard Disk Types (S-series)
+
+| Disk Type | Disk Size (GiB) |
+|-----------|----------------|
+| S4        | 32             |
+| S6        | 64             |
+| S10       | 128            |
+| S15       | 256            |
+| S20       | 512            |
+| S30       | 1,024          |
+| S40       | 2,048          |
+| S50       | 4,096          |
+| S60       | 8,192          |
+| S70       | 16,384         |
+| S80       | 32,767         |
+
 ## Development
 
 ### Project Structure
@@ -121,4 +178,4 @@ MIT License - See LICENSE file for details.
 ## Disclaimer
 
 This tool is not officially associated with Microsoft Azure. Always verify pricing calculations and recommendations against the official Azure pricing calculator and documentation.
-Garantie tot aan de deur.
+Garantie tot de deur

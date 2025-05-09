@@ -7,6 +7,7 @@ import sys
 from rich.console import Console
 
 from azsm.analyzer import AzureCostAnalyzer
+from azsm.pricing_client import PricingClient
 
 console = Console()
 
@@ -18,6 +19,8 @@ def main():
                         help="Output file for resources data (default: azure_resources.json)")
     parser.add_argument("--debug", action="store_true", 
                         help="Enable debug mode to print API queries and responses")
+    parser.add_argument("--currency", default="USD", choices=list(PricingClient.SUPPORTED_CURRENCIES.keys()),
+                        help="Currency for pricing (default: USD)")
     
     args = parser.parse_args()
     
@@ -25,7 +28,8 @@ def main():
         analyzer = AzureCostAnalyzer(
             subscription_id=args.subscription_id,
             output_file=args.output,
-            debug=args.debug
+            debug=args.debug,
+            currency=args.currency
         )
         success = analyzer.run()
         sys.exit(0 if success else 1)

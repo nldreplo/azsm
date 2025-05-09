@@ -21,7 +21,8 @@ class AzureCostAnalyzer:
     """Main class for Azure Save Money | azsm functionality."""
     
     def __init__(self, subscription_id: Optional[str] = None, output_file: str = "azure_resources.json", 
-                 debug: bool = False, currency: str = "USD"):
+                 debug: bool = False, currency: str = "USD", output_format: str = "console",
+                 format_output_path: Optional[str] = None):
         """Initialize the Azure Save Money | azsm.
         
         Args:
@@ -29,6 +30,8 @@ class AzureCostAnalyzer:
             output_file: Path to the output JSON file
             debug: Enable debug mode to print API queries
             currency: Currency code for pricing (default: USD)
+            output_format: Output format (console, csv, or html)
+            format_output_path: Path to save the formatted output file (for csv and html formats)
         """
         self.credential = DefaultAzureCredential()
         self.subscription_id = subscription_id
@@ -37,6 +40,8 @@ class AzureCostAnalyzer:
         self.pricing_data = {}
         self.debug = debug
         self.currency = currency
+        self.output_format = output_format
+        self.format_output_path = format_output_path
         
         # If no subscription ID provided, get it from current context
         if not self.subscription_id:
@@ -77,7 +82,14 @@ class AzureCostAnalyzer:
             cost_data["currency"] = self.currency
             
             # 4. Display results
-            self.report_generator.display_savings_table(cost_data)
+            if self.output_format == "console":
+                self.report_generator.display_savings_table(cost_data)
+            elif self.output_format == "csv":
+                self.report_generator.export_to_csv(cost_data, self.format_output_path)
+                console.print(f"[bold green]CSV report saved to:[/bold green] {self.format_output_path}")
+            elif self.output_format == "html":
+                self.report_generator.export_to_html(cost_data, self.format_output_path)
+                console.print(f"[bold green]HTML report saved to:[/bold green] {self.format_output_path}")
             
             return True
             

@@ -21,15 +21,26 @@ def main():
                         help="Enable debug mode to print API queries and responses")
     parser.add_argument("--currency", default="USD", choices=list(PricingClient.SUPPORTED_CURRENCIES.keys()),
                         help="Currency for pricing (default: USD)")
+    parser.add_argument("--format", choices=["console", "csv", "html"], default="console",
+                        help="Output format: console (default), csv, or html")
+    parser.add_argument("--format-output", default=None,
+                        help="File to save the formatted output (required for csv and html formats)")
     
     args = parser.parse_args()
+    
+    # Validate format arguments
+    if args.format in ["csv", "html"] and not args.format_output:
+        console.print("[bold red]Error:[/bold red] --format-output is required when using --format=csv or --format=html")
+        sys.exit(1)
     
     try:
         analyzer = AzureCostAnalyzer(
             subscription_id=args.subscription_id,
             output_file=args.output,
             debug=args.debug,
-            currency=args.currency
+            currency=args.currency,
+            output_format=args.format,
+            format_output_path=args.format_output
         )
         success = analyzer.run()
         sys.exit(0 if success else 1)

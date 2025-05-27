@@ -21,8 +21,8 @@ def main():
     parser.add_argument("--debug", action="store_true",
                         help="Enable debug mode to print API queries and responses")
     
-    parser.add_argument("--currency", default="USD", choices=list(PricingClient.SUPPORTED_CURRENCIES.keys()),
-                        help="Currency for pricing (default: USD)")
+    parser.add_argument("--currency", default="EUR", choices=list(PricingClient.SUPPORTED_CURRENCIES.keys()),
+                        help="Currency for pricing (default: EUR)")
     
     args = parser.parse_args()
     

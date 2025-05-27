@@ -117,7 +117,7 @@ class CostCalculator:
             cost_data["low_priority_monthly_cost"] += low_priority_cost
             cost_data["savings_plan_1yr_monthly_cost"] += savings_plan_1yr_cost
             cost_data["savings_plan_3yr_monthly_cost"] += savings_plan_3yr_cost
-            Cost_data["reservations_1yr_monthly_cost"] += reservations_1yr_cost
+            cost_data["reservations_1yr_monthly_cost"] += reservations_1yr_cost
             cost_data["reservations_3yr_monthly_cost"] += reservations_3yr_cost
             
             # Add to detailed breakdown

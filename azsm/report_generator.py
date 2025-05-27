@@ -23,14 +23,14 @@ class ReportGenerator:
             debug: Whether to show debug information
         """
         self.debug = debug
-        self.currency = "USD"  # Default currency
+        self.currency = "EUR"  # Default currency
 
     def display_savings_table(self, cost_data: Dict[str, Any]) -> None:
         """Display a table showing current costs and potential savings."""
         console.print("\n[bold blue]Cost Analysis Results[/bold blue]")
         
         # Get currency from cost_data
-        self.currency = cost_data.get("currency", "USD")
+        self.currency = cost_data.get("currency", "EUR")
         
         # Debug: Print disk data
         if self.debug:
@@ -123,6 +123,22 @@ class ReportGenerator:
             format_currency(cost_data['savings_plan_3yr_monthly_cost'], self.currency),
             format_currency(savings_3yr, self.currency),
             format_percentage(cost_data['savings_plan_3yr_percent'])
+
+                 # Reservations options
+        reservations_1yr = cost_data['current_monthly_cost'] - cost_data['reservations_1yr_monthly_cost']
+        reservations_3yr = cost_data['current_monthly_cost'] - cost_data['reservations_3yr_monthly_cost']
+        )
+        table.add_row(
+            "Reservations (1 Years)",
+            format_currency(cost_data['reservations_1yr_monthly_cost'], self.currency),
+            format_currency(savings_3yr, self.currency),
+            format_percentage(cost_data['reservations_1yr_percent'])
+        )
+        table.add_row(
+            "Reservations (3 Years)",
+            format_currency(cost_data['reservations_3yr_monthly_cost'], self.currency),
+            format_currency(savings_3yr, self.currency),
+            format_percentage(cost_data['reservations_3yr_percent'])
         )
         
         # Add hybrid benefit options if applicable

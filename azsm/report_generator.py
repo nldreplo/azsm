@@ -131,13 +131,13 @@ class ReportGenerator:
         table.add_row(
             "Reservations (1 Years)",
             format_currency(cost_data['reservations_1yr_monthly_cost'], self.currency),
-            format_currency(savings_3yr, self.currency),
+            format_currency(reservations_1yr, self.currency),
             format_percentage(cost_data['reservations_1yr_percent'])
         )
         table.add_row(
             "Reservations (3 Years)",
             format_currency(cost_data['reservations_3yr_monthly_cost'], self.currency),
-            format_currency(savings_3yr, self.currency),
+            format_currency(reservations_3yr, self.currency),
             format_percentage(cost_data['reservations_3yr_percent'])
         )
         

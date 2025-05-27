@@ -21,7 +21,7 @@ class AzureCostAnalyzer:
     """Main class for Azure Save Money | azsm functionality."""
     
     def __init__(self, subscription_id: Optional[str] = None, output_file: str = "azure_resources.json", 
-                 debug: bool = False, currency: str = "USD", output_format: str = "console",
+                 debug: bool = False, currency: str = "EUR", output_format: str = "console",
                  format_output_path: Optional[str] = None):
         """Initialize the Azure Save Money | azsm.
         

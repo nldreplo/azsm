@@ -35,7 +35,7 @@ class PricingClient:
         "USD": "US Dollar"
     }
     
-    def __init__(self, debug=False, currency="USD"):
+    def __init__(self, debug=False, currency="EUR"):
         """Initialize the Azure Pricing Client."""
         if currency not in self.SUPPORTED_CURRENCIES:
             raise ValueError(f"Unsupported currency: {currency}. Supported currencies: {', '.join(self.SUPPORTED_CURRENCIES.keys())}")
@@ -103,7 +103,9 @@ class PricingClient:
                             "savings_plan_3yr": None,
                             "hybrid_benefit": None,
                             "hybrid_savings_plan_1yr": None,
-                            "hybrid_savings_plan_3yr": None
+                            "hybrid_savings_plan_3yr": None,
+                            "reservations_1yr": None,
+                            "reservations_3yr": None
                         },
                         "linux": {
                             "pay_as_you_go": None,
@@ -111,6 +113,8 @@ class PricingClient:
                             "spot": None,
                             "savings_plan_1yr": None,
                             "savings_plan_3yr": None
+                            "reservations_1yr": None,
+                            "reservations_3yr": None
                         }
                     }
                     
@@ -156,6 +160,24 @@ class PricingClient:
                                         # Add Windows license cost for Windows savings plan
                                         windows_license = self.windows_license_cost.get(vm_size, 0)
                                         pricing_result["windows"]["savings_plan_3yr"] = linux_3yr_price + windows_license
+
+                             # Handle reservation prices
+                        if "reservation" in item:
+                            if os_type == "linux":
+                                # Store Linux savings plan prices
+                                for plan in item["reservation"]:
+                                    if plan.get("term") == "1 Year":
+                                        linux_1yr_price = plan.get("retailPrice")
+                                        pricing_result["linux"]["reservation_1yr"] = linux_1yr_price
+                                        # Add Windows license cost for Windows savings plan
+                                        windows_license = self.windows_license_cost.get(vm_size, 0)
+                                        pricing_result["windows"]["reservation_1yr"] = linux_1yr_price + windows_license
+                                    elif plan.get("term") == "3 Years":
+                                        linux_3yr_price = plan.get("retailPrice")
+                                        pricing_result["linux"]["reservation_3yr"] = linux_3yr_price
+                                        # Add Windows license cost for Windows savings plan
+                                        windows_license = self.windows_license_cost.get(vm_size, 0)
+                                        pricing_result["windows"]["reservation_3yr"] = linux_3yr_price + windows_license
                     
                     # Calculate hybrid benefit prices for Windows VMs (base Windows price - base Linux price)
                     if windows_base_price and linux_base_price:

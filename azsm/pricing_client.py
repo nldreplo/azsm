@@ -168,16 +168,16 @@ class PricingClient:
                                 for plan in item["reservation"]:
                                     if plan.get("term") == "1 Year":
                                         linux_1yr_price = plan.get("retailPrice")
-                                        pricing_result["linux"]["reservation_1yr"] = linux_1yr_price
+                                        pricing_result["linux"]["reservations_1yr"] = linux_1yr_price
                                         # Add Windows license cost for Windows savings plan
                                         windows_license = self.windows_license_cost.get(vm_size, 0)
-                                        pricing_result["windows"]["reservation_1yr"] = linux_1yr_price + windows_license
+                                        pricing_result["windows"]["reservations_1yr"] = linux_1yr_price + windows_license
                                     elif plan.get("term") == "3 Years":
                                         linux_3yr_price = plan.get("retailPrice")
-                                        pricing_result["linux"]["reservation_3yr"] = linux_3yr_price
+                                        pricing_result["linux"]["reservations_3yr"] = linux_3yr_price
                                         # Add Windows license cost for Windows savings plan
                                         windows_license = self.windows_license_cost.get(vm_size, 0)
-                                        pricing_result["windows"]["reservation_3yr"] = linux_3yr_price + windows_license
+                                        pricing_result["windows"]["reservations_3yr"] = linux_3yr_price + windows_license
                     
                     # Calculate hybrid benefit prices for Windows VMs (base Windows price - base Linux price)
                     if windows_base_price and linux_base_price:

@@ -29,7 +29,7 @@ class AzureCostAnalyzer:
             subscription_id: Azure subscription ID (optional, will use current context if not provided)
             output_file: Path to the output JSON file
             debug: Enable debug mode to print API queries
-            currency: Currency code for pricing (default: USD)
+            currency: Currency code for pricing (default: EUR)
             output_format: Output format (console, csv, or html)
             format_output_path: Path to save the formatted output file (for csv and html formats)
         """

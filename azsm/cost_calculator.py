@@ -24,7 +24,7 @@ class CostCalculator:
             Dictionary with cost analysis data
         """
         cost_data = {
-            "currency": pricing_data.get("currency", "USD"),  # Add this line
+            "currency": pricing_data.get("currency", "EUR"),  # Add this line
             "current_monthly_cost": 0.0,
             "spot_monthly_cost": 0.0,
             "low_priority_monthly_cost": 0.0,
@@ -37,6 +37,9 @@ class CostCalculator:
             "savings_low_priority_percent": 0.0,
             "savings_plan_1yr_percent": 0.0,
             "savings_plan_3yr_percent": 0.0,
+            "reservations_1yr_monthly_cost": 0.0,
+            "reservations_3yr_monthly_cost": 0.0,
+            "reservations_low_priority_percent": 0.0,
             "hybrid_savings_percent": 0.0,
             "hybrid_savings_plan_1yr_percent": 0.0,
             "hybrid_savings_plan_3yr_percent": 0.0,
@@ -58,6 +61,10 @@ class CostCalculator:
         if cost_data["current_monthly_cost"] > 0:
             cost_data["savings_spot_percent"] = ((cost_data["current_monthly_cost"] - cost_data["spot_monthly_cost"]) / 
                                                cost_data["current_monthly_cost"]) * 100
+             cost_data["reservations_low_priority_percent"] = ((cost_data["current_monthly_cost"] - cost_data["low_priority_monthly_cost"]) / 
+                                                       cost_data["current_monthly_cost"]) * 100
+             cost_data["reservations_low_priority_percent"] = ((cost_data["current_monthly_cost"] - cost_data["low_priority_monthly_cost"]) / 
+                                                       cost_data["current_monthly_cost"]) * 100
             
             cost_data["savings_low_priority_percent"] = ((cost_data["current_monthly_cost"] - cost_data["low_priority_monthly_cost"]) / 
                                                        cost_data["current_monthly_cost"]) * 100
@@ -100,6 +107,9 @@ class CostCalculator:
             low_priority_cost = pricing["low_priority"] * hours_per_month if pricing["low_priority"] else current_cost
             savings_plan_1yr_cost = pricing["savings_plan_1yr"] * hours_per_month if pricing["savings_plan_1yr"] else current_cost
             savings_plan_3yr_cost = pricing["savings_plan_3yr"] * hours_per_month if pricing["savings_plan_3yr"] else current_cost
+            reservations_1yr_cost = pricing["reservations_1yr"] * hours_per_month if pricing["reservations_1yr"] else current_cost
+            reservations_3yr_cost = pricing["reservations_3yr"] * hours_per_month if pricing["reservations_3yr"] else current_cost
+
             
             # Update total costs
             cost_data["current_monthly_cost"] += current_cost
@@ -107,6 +117,8 @@ class CostCalculator:
             cost_data["low_priority_monthly_cost"] += low_priority_cost
             cost_data["savings_plan_1yr_monthly_cost"] += savings_plan_1yr_cost
             cost_data["savings_plan_3yr_monthly_cost"] += savings_plan_3yr_cost
+            cost_data["reservations_1yr_monthly_cost"] += reservations_1yr_cost
+            cost_data["reservations_3yr_monthly_cost"] += reservations_3yr_cost
             
             # Add to detailed breakdown
             vm_detail = {
@@ -118,7 +130,9 @@ class CostCalculator:
                 "spot_monthly_cost": spot_cost,
                 "low_priority_monthly_cost": low_priority_cost,
                 "savings_plan_1yr_monthly_cost": savings_plan_1yr_cost,
-                "savings_plan_3yr_monthly_cost": savings_plan_3yr_cost
+                "savings_plan_3yr_monthly_cost": savings_plan_3yr_cost,
+                "reservations_1yr_monthly_cost": reservation_1yr_cost,
+                "reservations_3yr_monthly_cost": reservation_3yr_cost
             }
             
             cost_data["detailed"]["virtual_machines"].append(vm_detail)
